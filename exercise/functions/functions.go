@@ -19,7 +19,21 @@ package main
 
 import "fmt"
 
-func main() {
-
+func greet(name string) {
+	fmt.Println("Hello,", name)
 }
 
+func addThreeNumbers(a,b,c int) int {
+	return a + b + c
+}
+
+func returnAnyTwoNumbers() (int, int) {
+	return 1, 2
+}
+
+func main() {
+	greet("Mio")
+
+	a, b := returnAnyTwoNumbers()
+	fmt.Println("addThreeNumbers =", addThreeNumbers(a, b, 3))
+}
