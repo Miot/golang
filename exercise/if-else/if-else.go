@@ -45,10 +45,25 @@ func accessDenied() {
 	fmt.Println("Denied")
 }
 
+func isWeekends(day int) bool {
+	return day > 4
+}
+
+
 func main() {
 	// The day and role. Change these to check your work.
-	today, role := Tuesday, Guest
+	today, role := Wednesday, Guest
 
-	accessGranted()
+	if role == Manager || role == Admin {
+		accessGranted()
+	} else if role == Contractor && isWeekends(today) {
+		accessGranted()
+	} else if role == Member && !isWeekends(today) {
+		accessGranted()
+	} else if role == Guest && (today == Monday || today == Wednesday || today == Friday) {
+		accessGranted()
+	} else {
+		accessDenied()
+	}
 }
 
