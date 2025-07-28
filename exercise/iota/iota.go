@@ -16,7 +16,35 @@ package main
 
 import "fmt"
 
+const (
+	Add = iota
+	Sub
+	Mul
+	Div
+)
+
+type Operation int
+
+func (op Operation) calculate(lhs, rhs int) int {
+	switch op {
+	case Add:
+		return lhs + rhs
+	case Sub:
+		return lhs - rhs
+	case Mul:
+		return lhs * rhs
+	case Div:
+		return lhs / rhs
+	}
+	panic("Invalid operation")
+}
+
 func main() {
+	add := Operation(Add)
+	sub := Operation(Sub)
+	mul := Operation(Mul)
+	div := Operation(Div)
+
 	fmt.Println(add.calculate(2, 2)) // = 4
 
 	fmt.Println(sub.calculate(10, 3)) // = 7
