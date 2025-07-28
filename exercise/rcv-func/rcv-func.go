@@ -16,7 +16,36 @@ package main
 
 import "fmt"
 
-func main() {
+type Player struct {
+	name string
+	health, maxHealth int
+	energy, maxEnergy int
+}
 
+func (p *Player) modifyHealth(amount int) {
+	p.health += amount
+	if p.health > p.maxHealth {
+		p.health = p.maxHealth
+	} else if p.health < 0 {
+		p.health = 0
+	}
+	fmt.Println(p.name, "health:", p.health)
+}
+
+func (p *Player) modifyEnergy(amount int) {
+	p.energy += amount
+	if p.energy > p.maxEnergy {
+		p.energy = p.maxEnergy
+	} else if p.energy < 0 {
+		p.energy = 0
+	}
+	fmt.Println(p.name, "energy:", p.energy)
+}
+
+func main() {
+	player := Player{name: "Player1", health: 10, maxHealth: 100, energy: 66, maxEnergy: 100}
+	player.modifyHealth(100)
+	player.modifyHealth(-10)
+	player.modifyEnergy(50)
 }
 
